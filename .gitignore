@@ -1,0 +1,6 @@
+
+*.ipch
+Debug/*
+.vs/*
+SFND_Lidar_Obstacle_Detection.vcxproj.user
+SFND_Lidar_Obstacle_Detection.vcxproj.filters

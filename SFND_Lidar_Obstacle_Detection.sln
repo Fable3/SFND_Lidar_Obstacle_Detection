@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1000
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SFND_Lidar_Obstacle_Detection", "SFND_Lidar_Obstacle_Detection.vcxproj", "{F1AFA614-6BB8-4B5D-9EEC-A9B3873E6BEE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F1AFA614-6BB8-4B5D-9EEC-A9B3873E6BEE}.Debug|x64.ActiveCfg = Debug|x64
+		{F1AFA614-6BB8-4B5D-9EEC-A9B3873E6BEE}.Debug|x64.Build.0 = Debug|x64
+		{F1AFA614-6BB8-4B5D-9EEC-A9B3873E6BEE}.Debug|x86.ActiveCfg = Debug|Win32
+		{F1AFA614-6BB8-4B5D-9EEC-A9B3873E6BEE}.Debug|x86.Build.0 = Debug|Win32
+		{F1AFA614-6BB8-4B5D-9EEC-A9B3873E6BEE}.Release|x64.ActiveCfg = Release|x64
+		{F1AFA614-6BB8-4B5D-9EEC-A9B3873E6BEE}.Release|x64.Build.0 = Release|x64
+		{F1AFA614-6BB8-4B5D-9EEC-A9B3873E6BEE}.Release|x86.ActiveCfg = Release|Win32
+		{F1AFA614-6BB8-4B5D-9EEC-A9B3873E6BEE}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C4BD3963-428B-430C-9260-1A1CBD1FBF4C}
+	EndGlobalSection
+EndGlobal
