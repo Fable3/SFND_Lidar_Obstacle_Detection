@@ -103,9 +103,14 @@ namespace quiz_ransac2d {
 	int main();
 }
 
+namespace quiz_cluster {
+	int main();
+}
+
 int main (int argc, char** argv)
 {
 	//return quiz_ransac2d::main();
+	return quiz_cluster::main();
     std::cout << "starting enviroment" << std::endl;
 
     pcl::visualization::PCLVisualizer::Ptr viewer (new pcl::visualization::PCLVisualizer ("3D Viewer"));
