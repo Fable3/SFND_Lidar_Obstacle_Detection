@@ -110,7 +110,7 @@ void cityBlock(pcl::visualization::PCLVisualizer::Ptr& viewer)
 	float area_back = 10;
 	float area_front = 20;
 	float area_side = 7;
-	pcl::PointCloud<pcl::PointXYZI>::Ptr filterCloud = pointProcessorI->FilterCloud(inputCloud, 0.2 , Eigen::Vector4f(-area_back,-area_side,-5, 1), Eigen::Vector4f(area_front, area_side, 5, 1));
+	pcl::PointCloud<pcl::PointXYZI>::Ptr filterCloud = pointProcessorI->FilterCloud(inputCloud, 0.02 , Eigen::Vector4f(-area_back,-area_side,-5, 1), Eigen::Vector4f(area_front, area_side, 5, 1));
 	renderPointCloud(viewer, filterCloud, "filterCloud");
 
 	/* car roof test:
