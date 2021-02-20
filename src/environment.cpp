@@ -54,8 +54,25 @@ void simpleHighway(pcl::visualization::PCLVisualizer::Ptr& viewer)
     // Create point processor
 	ProcessPointClouds<pcl::PointXYZ> process;
 	std::pair<pcl::PointCloud<pcl::PointXYZ>::Ptr, pcl::PointCloud<pcl::PointXYZ>::Ptr> segmentCloud = process.SegmentPlane(inputCloud, 10, 0.2);
-	renderPointCloud(viewer, segmentCloud.first, "obstacles", Color(1, 0, 0));
-	renderPointCloud(viewer, segmentCloud.second, "road", Color(0, 1, 0));
+	//renderPointCloud(viewer, segmentCloud.first, "obstacles", Color(1, 0, 0));
+	//renderPointCloud(viewer, segmentCloud.second, "road", Color(0, 1, 0));
+
+	std::vector<pcl::PointCloud<pcl::PointXYZ>::Ptr> cloudClusters = process.Clustering(segmentCloud.first, 1.0, 3, 30);
+
+	int clusterId = 0;
+	std::vector<Color> colors = { Color(1,0,0), Color(0,1,0), Color(0,0,1) };
+
+	for (pcl::PointCloud<pcl::PointXYZ>::Ptr cluster : cloudClusters)
+	{
+		std::cout << "cluster size " << cluster->points.size() << std::endl;
+		auto color = colors[clusterId % 3];
+		renderPointCloud(viewer, cluster, "obstCloud" + std::to_string(clusterId), color);
+
+		Box box = process.BoundingBox(cluster);
+		renderBox(viewer, box, clusterId, color);
+
+		++clusterId;
+	}
 }
 
 
@@ -88,7 +105,7 @@ namespace quiz_ransac2d {
 
 int main (int argc, char** argv)
 {
-	return quiz_ransac2d::main();
+	//return quiz_ransac2d::main();
     std::cout << "starting enviroment" << std::endl;
 
     pcl::visualization::PCLVisualizer::Ptr viewer (new pcl::visualization::PCLVisualizer ("3D Viewer"));
