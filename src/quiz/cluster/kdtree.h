@@ -17,6 +17,7 @@ struct Node
 	{}
 };
 
+template<unsigned int NDIM>
 struct KdTree
 {
 	Node* root;
@@ -33,7 +34,7 @@ struct KdTree
 		Node **target_node = &root;
 		for (;;)
 		{
-			int d = depth % 2;
+			int d = depth % NDIM;
 			if (*target_node == NULL)
 			{
 				*target_node = new Node(point, id);
@@ -61,7 +62,7 @@ struct KdTree
 	void searchHelper(std::vector<int> &ids, Node *node, int depth, const std::vector<float> &target, float distanceTol)
 	{
 		if (node == NULL) return;
-		int dim = depth % 2;
+		int dim = depth % NDIM;
 		float target_val = target[dim];
 		float node_val = node->point[dim];
 		if (target_val < node_val - distanceTol)

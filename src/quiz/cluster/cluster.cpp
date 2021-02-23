@@ -76,7 +76,8 @@ namespace quiz_cluster {
 
 	}
 
-	void Proximity(const std::vector<std::vector<float>>& points, std::vector<bool> &processed, KdTree* tree, float distanceTol, int idx, std::vector<int> &cluster)
+	template<unsigned int NDIM>
+	void Proximity(const std::vector<std::vector<float>>& points, std::vector<bool> &processed, KdTree<NDIM>* tree, float distanceTol, int idx, std::vector<int> &cluster)
 	{
 		processed[idx] = true;
 		cluster.push_back(idx);
@@ -85,12 +86,13 @@ namespace quiz_cluster {
 		{
 			if (!processed[nearby_idx])
 			{
-				Proximity(points, processed, tree, distanceTol, nearby_idx, cluster);
+				Proximity<NDIM>(points, processed, tree, distanceTol, nearby_idx, cluster);
 			}
 		}
 	}
 
-	std::vector<std::vector<int>> euclideanCluster(const std::vector<std::vector<float>>& points, KdTree* tree, float distanceTol)
+	template<unsigned int NDIM>
+	std::vector<std::vector<int>> euclideanCluster(const std::vector<std::vector<float>>& points, KdTree<NDIM>* tree, float distanceTol)
 	{
 
 		// TODO: Fill out this function to return list of indices for each cluster
@@ -103,7 +105,7 @@ namespace quiz_cluster {
 			if (!processed[idx])
 			{
 				std::vector<int> cluster;
-				Proximity(points, processed, tree, distanceTol, idx, cluster);
+				Proximity<NDIM>(points, processed, tree, distanceTol, idx, cluster);
 				clusters.push_back(cluster);
 			}
 		}
@@ -129,7 +131,7 @@ namespace quiz_cluster {
 		//std::vector<std::vector<float>> points = { {-6.2,7}, {-6.3,8.4}, {-5.2,7.1}, {-5.7,6.3} };
 		pcl::PointCloud<pcl::PointXYZ>::Ptr cloud = CreateData(points);
 
-		KdTree* tree = new KdTree;
+		KdTree<2>* tree = new KdTree<2>;
 
 		for (int i = 0; i < points.size(); i++)
 			tree->insert(points[i], i);
@@ -146,7 +148,7 @@ namespace quiz_cluster {
 		// Time segmentation process
 		auto startTime = std::chrono::steady_clock::now();
 		//
-		std::vector<std::vector<int>> clusters = euclideanCluster(points, tree, 3.0);
+		std::vector<std::vector<int>> clusters = euclideanCluster<2>(points, tree, 3.0);
 		//
 		auto endTime = std::chrono::steady_clock::now();
 		auto elapsedTime = std::chrono::duration_cast<std::chrono::milliseconds>(endTime - startTime);
