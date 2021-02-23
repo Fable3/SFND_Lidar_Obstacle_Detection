@@ -160,7 +160,7 @@ namespace quiz_cluster {
 int main (int argc, char** argv)
 {
 	//return quiz_ransac2d::main();
-	return quiz_cluster::main();
+	//return quiz_cluster::main();
     std::cout << "starting enviroment" << std::endl;
 
     pcl::visualization::PCLVisualizer::Ptr viewer (new pcl::visualization::PCLVisualizer ("3D Viewer"));
@@ -170,13 +170,14 @@ int main (int argc, char** argv)
 	ProcessPointClouds<pcl::PointXYZI>* pointProcessorI = new ProcessPointClouds<pcl::PointXYZI>();
 
 	// single frame:
+	/*
 	pcl::PointCloud<pcl::PointXYZI>::Ptr inputCloud = pointProcessorI->loadPcd("../src/sensors/data/pcd/data_1/0000000010.pcd");
 	cityBlock(viewer, pointProcessorI, inputCloud);
 	//renderPointCloud(viewer, inputCloud, "inputCloud");
 	while (!viewer->wasStopped())
 	{
 		viewer->spinOnce();
-	}
+	}*/
 
 	// stream:
 	std::vector<boost::filesystem::path> stream = pointProcessorI->streamPcd("../src/sensors/data/pcd/data_1");
